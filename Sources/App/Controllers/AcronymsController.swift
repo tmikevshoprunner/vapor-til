@@ -65,8 +65,8 @@ struct AcronymsController: RouteCollection {
     }
     
     func firstHandler(_ req: Request) throws -> Future<Acronym> {
-        return Acronym.query(on: req).first().map({ (acronum) in
-            guard let acronym = acronym else { return Abort(.notFound) }
+        return Acronym.query(on: req).first().map({ (acronym) in
+            guard let acronym = acronym else { throw Abort(.notFound) }
             
             return acronym
         })
